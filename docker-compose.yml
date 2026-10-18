@@ -21,7 +21,8 @@ services:
     container_name: postgres
     restart: unless-stopped
     environment:
-      - POSTGRES_PASSWORD=lab_pass
+      POSTGRES_PASSWORD: ${POSTGRES_SUPERUSER_PASSWORD:?Set POSTGRES_SUPERUSER_PASSWORD in .env}
+      PRICING_DB_PASSWORD: ${PRICING_DB_PASSWORD:?Set PRICING_DB_PASSWORD in .env}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:

@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -22,7 +23,13 @@ public class Program
 
     public static IWebHost BuildWebHost(string[] args)
     {
-        var key = Encoding.ASCII.GetBytes("THIS_IS_A_RANDOM_SECRET_2e7a1e80-16ee-4e52-b5c6-5e8892453459");
+        var signingKey = Environment.GetEnvironmentVariable("Jwt__SigningKey");
+        if (string.IsNullOrWhiteSpace(signingKey))
+        {
+            throw new InvalidOperationException("Set Jwt__SigningKey before starting the API gateway.");
+        }
+
+        var key = Encoding.UTF8.GetBytes(signingKey);
 
         return WebHost.CreateDefaultBuilder(args)
             .ConfigureAppConfiguration((hostingContext, config) =>
