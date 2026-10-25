@@ -32,6 +32,7 @@ public class Program
         var key = Encoding.UTF8.GetBytes(signingKey);
 
         return WebHost.CreateDefaultBuilder(args)
+            .UseUrls(Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://localhost:8099")
             .ConfigureAppConfiguration((hostingContext, config) =>
             {
                 config

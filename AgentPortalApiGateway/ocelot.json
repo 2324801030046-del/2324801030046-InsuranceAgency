@@ -3,6 +3,22 @@
     {
       "DownstreamPathTemplate": "/api/Products/{everything}",
       "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/Products/{everything}",
+      "ServiceName": "ProductService",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "ApiSecurity",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "userType": "SALESMAN"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Products/{everything}",
+      "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/Products/{everything}",
       "ServiceName": "ProductService",
       "UpstreamHttpMethod": [
@@ -135,7 +151,7 @@
     "ServiceDiscoveryProvider": {
       "Type": "Eureka",
       "Host": "localhost",
-      "Port": "8761"
+      "Port": 8761
     }
   }
 }

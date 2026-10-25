@@ -15,4 +15,9 @@
         <PackageReference Include="Steeltoe.Discovery.Eureka" Version="3.2.7" />
     </ItemGroup>
 
+    <ItemGroup>
+        <None Update="ocelot.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+        <None Update="ocelot.docker.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    </ItemGroup>
+
 </Project>
